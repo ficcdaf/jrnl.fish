@@ -1,10 +1,19 @@
 # jrnl.fish
 
 > Fishy journaling 🐟
+>
+> Part of my [utilities](https://sr.ht/~ficd/utils/) collection.
 
 `jrnl` is a simple Fish utility for journaling in Markdown. It creates daily
 journal entries based on a template. The `jrnl` command opens today's entry in
 your `$EDITOR`, making it easy to journal from any terminal!
+
+- [Usage](#usage)
+  - [Template](#template)
+- [Installation](#installation)
+- [Acknowledgements](#acknowledgements)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Usage
 
@@ -84,6 +93,12 @@ fisher install ficcdaf/jrnl.fish
 ## Acknowledgements
 
 - Will Munslow's original [jrnl](https://github.com/subterrane/jrnl) script.
+
+## Contributing
+
+Please submit patches, questions, and discussion points to the
+[mailing list](https://lists.sr.ht/~ficd/utils), and make bug reports and
+feature requests on the [ticket tracker](https://todo.sr.ht/~ficd/utils).
 
 ## License
 
