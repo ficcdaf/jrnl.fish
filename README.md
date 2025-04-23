@@ -6,7 +6,7 @@
 
 `jrnl` is a simple Fish utility for journaling in Markdown. It creates daily
 journal entries based on a template. The `jrnl` command opens today's entry in
-your `$EDITOR`, making it easy to journal from any terminal!
+your `$EDITOR`, making it easy to journal any time!
 
 - [Usage](#usage)
   - [Template](#template)
@@ -39,8 +39,8 @@ To set the journal directory (`~/jrnl` by default):
 # via an environment variable called jrnl_directory
 set -Ug jrnl_directory /path/to/journal
 # or via command option
-jrnl -d=path/to/journal
-jrnl --dir=path/to/journal
+jrnl -d path/to/journal
+jrnl --dir path/to/journal
 ```
 
 To set the template file (relative to the journal directory, `template.md` by
@@ -50,8 +50,8 @@ default):
 # via an environment variable called jrnl_template
 set -Ug jrnl_template template_name.md
 # or via command option
-jrnl -t=template_name.md
-jrnl --template=template_name.md
+jrnl -t template_name.md
+jrnl --template template_name.md
 ```
 
 To show the help menu:
@@ -63,11 +63,14 @@ jrnl --help
 
 ### Template
 
-`jrnl.fish` implements a very basic template system. The template file should be
-a Markdown file inside the journal directory. Markdown comments are skipped, and
-extra newlines at the end of the file are trimmed.
+`jrnl.fish` implements a very basic template system.
 
-The following literals are substituted:
+If the specified template file cannot be resolved, the journal directory is
+searched with `fd` for a matching file. If there is no such template, the
+default `template.md` will be used.
+
+Markdown comments are skipped, and extra newlines at the end of the file are
+trimmed. The following literals are substituted:
 
 - `%{date}`
   - Short date: `2025-04-23`.
