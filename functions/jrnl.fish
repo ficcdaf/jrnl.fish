@@ -1,5 +1,5 @@
 function jrnl --description 'Lightweight journaling tool'
-    argparse h/help d/dir=? t/template=? e/edit-template -- $argv
+    argparse h/help d/dir= t/template= e/edit-template -- $argv
     if set -q _flag_h
         echo jrnl: a lightweight journaling tool
         echo
@@ -13,12 +13,12 @@ function jrnl --description 'Lightweight journaling tool'
         echo \t\> jrnl --edit-template
         echo \tSet the journal directory "(~/jrnl)" by default:
         echo \t\> set -Ug jrnl_directory path/to/journal
-        echo \t\> jrnl -d=path
-        echo \t\> jrnl --dir=path
+        echo \t\> jrnl -d path
+        echo \t\> jrnl --dir path
         echo \tSet the template file "(relative to journal directory)":
         echo \t\> set -Ug jrnl_template template_file
-        echo \t\> jrnl -t=template_file.md
-        echo \t\> jrnl --template=template_file.md
+        echo \t\> jrnl -t template_file.md
+        echo \t\> jrnl --template template_file.md
         echo \tShow this help menu:
         echo \t\> jrnl -h
         echo \t\> jrnl --help
