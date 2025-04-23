@@ -38,7 +38,7 @@ To set the template file (relative to the journal directory, `template.md` by
 default):
 
 ```fish
-# via an environment variable called jrnl_directory
+# via an environment variable called jrnl_template
 set -Ug jrnl_template template_name.md
 # or via command option
 jrnl -t=template_name.md
