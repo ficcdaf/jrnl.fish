@@ -41,7 +41,7 @@ function jrnl --description 'Lightweight journaling tool'
 
     end
 
-    set -f jdir ~/jrnl
+    set -g jdir ~/jrnl
     if set -ql _flag_dir[1]
         set jdir $_flag_dir[1]
     else if set -q jrnl_directory
@@ -59,6 +59,10 @@ function jrnl --description 'Lightweight journaling tool'
         set template $jrnl_template
     end
     set -f template_base (path basename $template)
+    function edit -a targ
+        set -l cmd (string split ' ' -- $EDITOR)
+        env -C $jdir $cmd $targ
+    end
 
     if not test -f $template
         # first check if template exists in jdir
@@ -81,7 +85,7 @@ function jrnl --description 'Lightweight journaling tool'
                             echo
                             echo 'Today is %{date_long}.'
                         end >$template
-                        eval $EDITOR $template
+                        edit $template
                         set -q _flag_e; and return 0
                         break
                     case n N
@@ -91,7 +95,7 @@ function jrnl --description 'Lightweight journaling tool'
         end
     end
     if set -q _flag_e
-        eval $EDITOR $template
+        edit $template
         return 0
     end
 
@@ -112,13 +116,13 @@ function jrnl --description 'Lightweight journaling tool'
             printf "\033[1A\033[2K"
             switch $response
                 case y Y
-                    eval $EDITOR $entry
+                    edit $entry
                     break
                 case n N
                     break
             end
         end
     else
-        eval $EDITOR $entry
+        edit $entry
     end
 end
