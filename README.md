@@ -56,8 +56,9 @@ jrnl --help
 
 `jrnl.fish` implements a very basic template system. The template file should be
 a Markdown file inside the journal directory. Markdown comments are skipped, and
-extra newlines at the end of the file are trimmed. The following substitutions
-are supported:
+extra newlines at the end of the file are trimmed.
+
+The following literals are substituted:
 
 - `%{date}`
   - Short date: `2025-04-23`.

@@ -22,8 +22,17 @@ function jrnl --description 'Lightweight journaling tool'
         echo \tShow this help menu:
         echo \t\> jrnl -h
         echo \t\> jrnl --help
+        echo Template file:
+        echo \tThe template file is a Markdown file inside the
+        echo \tjournal directory, called \'template.md\' by default.
+        echo \tMarkdown comments are always skipped.
+        echo \tExtra newlines at the file end are trimmed.
+        echo \tThe literals '\'%{date}\'' and '\'%{date_long}\''
+        echo \tare substituted for date values.
         echo Author:
         echo \tDaniel Fichtinger '<daniel@ficd.ca>'
+        echo URL:
+        echo \thttps://git.sr.ht/~ficd/jrnl.fish
         echo License:
         echo \tMIT '(c)' Daniel Fichtinger 2025
         return 0
