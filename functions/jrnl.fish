@@ -1,5 +1,5 @@
 function jrnl --description 'Lightweight journaling tool'
-    argparse h/help d/dir= t/template= e/edit-template -- $argv
+    argparse h/help d/dir= t/template= e/edit-template o/offset= -- $argv
     if set -q _flag_h
         echo (set_color -o)jrnl: a lightweight journaling tool(set_color normal)
         echo
@@ -8,6 +8,11 @@ function jrnl --description 'Lightweight journaling tool'
         echo (set_color -o)Usage:(set_color normal)
         echo (set_color -o)\tOpen today\'s entry:(set_color normal)
         echo \t\> jrnl
+        echo (set_color -o)\tSet a time offset '(in hours, from midnight)'
+        echo \tfor start of the next day '(default: 3)':(set_color normal)
+        echo \t\> set -Ug jrnl_offset 2
+        echo \t\> jrnl -o 2
+        echo \t\> jrnl --offset 2
         echo (set_color -o)\tEdit the template:(set_color normal)
         echo \t\> jrnl -e
         echo \t\> jrnl --edit-template
@@ -99,8 +104,22 @@ function jrnl --description 'Lightweight journaling tool'
         return 0
     end
 
-    # get the date
-    set today (date +'%Y-%m-%d')
+    set -g offset 3
+    if set -ql _flag_offset[1]
+        echo flag is set
+        set offset $_flag_offset[1]
+    else if set -q jrnl_offset
+        set offset $jrnl_offset
+    end
+
+    function get_date -a fmt
+        if test (date +%H) -lt "$offset"
+            date -d yesterday +"$fmt"
+        else
+            date +"$fmt"
+        end
+    end
+    set today (get_date '%Y-%m-%d')
     set entry "$jdir/$today.md"
     # check if journal entry exists
     if not test -f $entry

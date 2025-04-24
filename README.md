@@ -26,6 +26,18 @@ To open today's entry, creating it if it doesn't yet exist:
 jrnl
 ```
 
+By default, the next day starts at 3 AM. To change this, you can set the offset
+yourself. For example, an offset of 0 means the next day starts at midnight,
+while an offset of 6 makes the day start at 6 AM, etc.
+
+```fish
+# via environment variable for persistance
+set -Ug jrnl_offset 0
+# or command option
+jrnl -o 0
+jrnl --offset 0
+```
+
 To edit the template at any time:
 
 ```fish
@@ -36,7 +48,7 @@ jrnl --edit-template
 To set the journal directory (`~/jrnl` by default):
 
 ```fish
-# via an environment variable called jrnl_directory
+# via environment variable for persistance
 set -Ug jrnl_directory /path/to/journal
 # or via command option
 jrnl -d path/to/journal
@@ -47,7 +59,7 @@ To set the template file (relative to the journal directory, `template.md` by
 default):
 
 ```fish
-# via an environment variable called jrnl_template
+# via environment variable for persistance
 set -Ug jrnl_template template_name.md
 # or via command option
 jrnl -t template_name.md
